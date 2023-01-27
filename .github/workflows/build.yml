@@ -20,7 +20,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: Run release build with Gradle Wrapper
-        run: ./gradlew build -Pplugin.version=${{ github.ref }} -Pelasticsearch.version=${{ matrix.es_version }}
+        run: ./gradlew build -Pplugin.version=${{ github.ref_name }} -Pelasticsearch.version=${{ matrix.es_version }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
