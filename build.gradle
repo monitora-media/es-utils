@@ -1,0 +1,40 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+
+  dependencies {
+    // Update Elasticsearch version here
+    classpath "org.elasticsearch.gradle:build-tools:8.5.3"
+  }
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+apply plugin: 'java'
+
+compileJava {
+  sourceCompatibility = JavaVersion.VERSION_17
+  targetCompatibility = JavaVersion.VERSION_17
+}
+
+apply plugin: 'elasticsearch.esplugin'
+
+group = "cz.monitora.elasticsearch"
+version = "1.0.0"
+
+esplugin {
+  name 'monitora_utils'
+  description 'Utils for Elasticsearch'
+  classname 'cz.monitora.elasticsearch.LowerCase'
+  licenseFile rootProject.file('LICENSE')
+}
+//dependencies {
+//  compileOnly "org.elasticsearch:elasticsearch:8.5.3"
+//}
+// validateNebulaPom.enabled = false
+
