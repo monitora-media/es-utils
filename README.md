@@ -2,6 +2,14 @@
 
 Various utilities enhancing our Elasticsearch installation.
 
+## Release
+
+To create a release, just tag the commit with version number. The built files are available
+in the [release](https://github.com/monitora-media/es-utils/releases/latest).
+
+    git tag 1.1.0
+    git push --tags
+
 ## Build
 
     ./gradlew build -Pelasticsearch.version=8.5.3
@@ -21,20 +29,21 @@ Index settings:
 
 ```json
 {
-    "analysis":
-        "filter": {
-        "lowercase": {
-            "type": "monitora_lowercase",
-            "preserve_original": "true"
+  "analysis": {
+    "filter": {
+      "lowercase": {
+        "type": "monitora_lowercase",
+        "preserve_original": "true"
+      },
+      "analyzer": {
+        "index": {
+          "type": "custom",
+          "filter": [
+            "lowercase"
+          ]
         }
-        "analyzer": {
-            "index": {
-                "type": "custom",
-                "filter": [
-                    "lowercase"
-                ]
-            }
-        }
+      }
     }
+  }
 }
 ```
