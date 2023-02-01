@@ -30,7 +30,7 @@ version = "${property("plugin.version")}-${property("elasticsearch.version")}"
 esplugin {
   name 'monitora_utils'
   description 'Utils for Elasticsearch'
-  classname 'cz.monitora.elasticsearch.LowerCase'
+  classname 'cz.monitora.elasticsearch.MonitoraESPlugin'
   licenseFile rootProject.file('LICENSE')
 }
 

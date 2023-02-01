@@ -1,4 +1,4 @@
-package cz.monitora.elasticsearch;
+package cz.monitora.elasticsearch.analyzer.lowercase;
 
 import org.apache.lucene.analysis.TokenStream;
 import org.elasticsearch.common.settings.Settings;

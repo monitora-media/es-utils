@@ -1,4 +1,4 @@
-package cz.monitora.elasticsearch;
+package cz.monitora.elasticsearch.analyzer.lowercase;
 
 import org.apache.lucene.analysis.CharacterUtils;
 import org.apache.lucene.analysis.TokenFilter;
