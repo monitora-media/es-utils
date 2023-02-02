@@ -15,7 +15,7 @@ public class CzechStemFilterFactory extends AbstractTokenFilterFactory {
   /** Creates a new CzechStemFilterFactory */
   public CzechStemFilterFactory(IndexSettings indexSettings, Environment env, String name, Settings settings) {
     super(name, settings);
-    withASCIIFold = settings.getAsBoolean("with_asciifold", true);
+    withASCIIFold = settings.getAsBoolean("with_asciifold", false);
   }
 
   @Override

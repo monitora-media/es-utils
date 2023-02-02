@@ -17,8 +17,8 @@ public class MonitoraESPlugin extends Plugin implements AnalysisPlugin {
     public Map<String, AnalysisModule.AnalysisProvider<TokenFilterFactory>> getTokenFilters() {
         Map<String, AnalysisModule.AnalysisProvider<TokenFilterFactory>> extra = new HashMap<>();
         extra.put("monitora_lowercase", AnalysisPlugin.requiresAnalysisSettings(LowerCaseTokenFilterFactory::new));
-        extra.put("czech_stem", CzechStemFilterFactory::new);
-        extra.put("slovak_stem", SlovakStemFilterFactory::new);
+        extra.put("monitora_czech_stem", CzechStemFilterFactory::new);
+        extra.put("monitora_slovak_stem", SlovakStemFilterFactory::new);
         return extra;
     }
 }

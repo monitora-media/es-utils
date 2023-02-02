@@ -25,25 +25,37 @@ in the [release](https://github.com/monitora-media/es-utils/releases/latest).
 Analysis filter that converts to lowercase but keeps the originally-cased token in the stream as
 well.
 
-Index settings:
+### Czech and Slovak stemmers
+
+Specialized stemmers
+
+### Example index settings
 
 ```json
 {
-  "analysis": {
     "filter": {
-      "lowercase": {
-        "type": "monitora_lowercase",
-        "preserve_original": "true"
-      },
-      "analyzer": {
-        "index": {
-          "type": "custom",
-          "filter": [
-            "lowercase"
-          ]
+        "lowercase": {
+            "type": "monitora_lowercase",
+            "preserve_original": "true"
+        },
+        "mczech_stem": {
+            "type": "monitora_czech_stem",
+            "with_asciifold": "true"
+        },
+        "mslovak_stem": {
+            "type": "monitora_slovak_stem",
+            "with_asciifold": "true"
         }
-      }
+    },
+    "analyzer": {
+        "index": {
+            "type": "custom",
+            "tokenizer": "whitespace",
+            "filter": [
+                "lowercase",
+                "mczech_stem"
+            ]
+        }
     }
-  }
 }
 ```

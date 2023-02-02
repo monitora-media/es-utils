@@ -14,7 +14,7 @@ public class SlovakStemFilterFactory extends AbstractTokenFilterFactory {
 
     public SlovakStemFilterFactory(IndexSettings indexSettings, Environment env, String name, Settings settings) {
         super(name, settings);
-        withASCIIFold = settings.getAsBoolean("with_asciifold", true);
+        withASCIIFold = settings.getAsBoolean("with_asciifold", false);
 	}
 
 	@Override
