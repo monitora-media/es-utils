@@ -12,11 +12,12 @@ in the [release](https://github.com/monitora-media/es-utils/releases/latest).
 
 ## Build
 
-    ./gradlew build -Pelasticsearch.version=8.5.3
+    ES_VERSION=8.5.3
+    ./gradlew build -Pelasticsearch.version=$ES_VERSION
 
 ## Install
 
-    elasticsearch-plugin install file://$(pwd)/build/distributions/monitora_utils-1.0.0-SNAPSHOT-8.5.3.zip
+    elasticsearch-plugin install file://$(pwd)/build/distributions/monitora_utils-*-SNAPSHOT-$ES_VERSION.zip
 
 ## Usage
 
