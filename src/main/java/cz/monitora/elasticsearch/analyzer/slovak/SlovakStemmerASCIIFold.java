@@ -131,6 +131,12 @@ public class SlovakStemmerASCIIFold {
                 endsWith(s, len, "ymi")) {
                 return len - 3;
             }
+            if (endsWith(s, len, "ice")) {
+                return len - 1;
+            }
+            if (endsWith(s, len, "ciam")) {
+                return len - 3;
+            }
         }
 
         if (len > 4) {

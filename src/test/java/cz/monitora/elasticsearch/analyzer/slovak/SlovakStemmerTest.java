@@ -27,6 +27,29 @@ public class SlovakStemmerTest {
             "kušte, kusk",
             "počešti, počesk",
             "klieští, kliesk",
+
+            // from our synonyms
+            "nemocnica, nemocnic",
+            "nemocnice, nemocnic",
+            "nemocniciam, nemocnic",
+            "bystrica, bystric",
+            "bystrice, bystric",
+            "bystriciam, bystric",
+            "štiavnica, štiavnic",
+            "štiavnice, štiavnic",
+            "štiavniciam, štiavnic",
+            "radnica, radnic",
+            "radnice, radnic",
+            "radniciam, radnic",
+            "stanica, stanic",
+            "stanice, stanic",
+            "staniciam, stanic",
+            "knižnica, knižnic",
+            "knižnice, knižnic",
+            "knižniciam, knižnic",
+            "lomnica, lomnic",
+            "lomnice, lomnic",
+            "lomniciam, lomnic",
     })
     public void test_stem(String val, String exp) {
         final SlovakStemmer stemmer = new SlovakStemmer();

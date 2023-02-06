@@ -27,6 +27,29 @@ public class SlovakStemmerASCIIFoldTest {
             "kuste, kusk",
             "pocesti, pocesk",
             "kliesti, kliesk",
+
+            // from our synonyms
+            "nemocnica, nemocnic",
+            "nemocnice, nemocnic",
+            "nemocniciam, nemocnic",
+            "bystrica, bystric",
+            "bystrice, bystric",
+            "bystriciam, bystric",
+            "stiavnica, stiavnic",
+            "stiavnice, stiavnic",
+            "stiavniciam, stiavnic",
+            "radnica, radnic",
+            "radnice, radnic",
+            "radniciam, radnic",
+            "stanica, stanic",
+            "stanice, stanic",
+            "staniciam, stanic",
+            "kniznica, kniznic",
+            "kniznice, kniznic",
+            "knizniciam, kniznic",
+            "lomnica, lomnic",
+            "lomnice, lomnic",
+            "lomniciam, lomnic",
     })
     public void test_stem(String val, String exp) {
         final SlovakStemmerASCIIFold stemmer = new SlovakStemmerASCIIFold();
