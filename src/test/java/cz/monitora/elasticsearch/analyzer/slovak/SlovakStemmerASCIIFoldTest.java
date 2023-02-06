@@ -10,27 +10,27 @@ public class SlovakStemmerASCIIFoldTest {
     // grep 'ze$' /usr/share/hunspell/sk_SK.dic | head
     @ParameterizedTest
     @CsvSource({
-                "vlastenci, vlastenk",
-                "kurence, kurenk",
-                "popici, popik",
-                "naruce, naruk",
+            "vlastenci, vlastenk",
+            "kurence, kurenk",
+            "popici, popik",
+            "naruce, naruk",
 
-                "medzi, medh",
-                "holomraze, holomrah",
-                "slizi, slih",
-                "odkialze, odkialh",
+            "medzi, medh",
+            "holomraze, holomrah",
+            "slizi, slih",
+            "odkialze, odkialh",
                 
-                "zmocte, zmock",
-                "nezvedecti, nezvedeck",
-                "nevimdalcti, nevimdalck",
+            "zmocte, zmock",
+            "nezvedecti, nezvedeck",
+            "nevimdalcti, nevimdalck",
 
-                "kuste, kusk",
-                "pocesti, pocesk",
-                "kliesti, kliesk",
-                })
+            "kuste, kusk",
+            "pocesti, pocesk",
+            "kliesti, kliesk",
+    })
     public void test_stem(String val, String exp) {
         final SlovakStemmerASCIIFold stemmer = new SlovakStemmerASCIIFold();
         char[] ch = val.toCharArray();
-        assertEquals(new String(Arrays.copyOfRange(ch, 0, stemmer.stem(ch, ch.length))), exp);
+        assertEquals(exp, new String(Arrays.copyOfRange(ch, 0, stemmer.stem(ch, ch.length))));
     }
 }
