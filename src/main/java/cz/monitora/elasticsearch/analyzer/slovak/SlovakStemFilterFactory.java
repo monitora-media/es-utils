@@ -1,7 +1,5 @@
 package cz.monitora.elasticsearch.analyzer.slovak;
 
-import java.util.Map;
-
 import org.apache.lucene.analysis.TokenStream;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;

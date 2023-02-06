@@ -1,3 +1,5 @@
+apply plugin: 'java-library'
+
 buildscript {
   repositories {
     mavenLocal()
@@ -15,8 +17,26 @@ repositories {
   mavenCentral()
 }
 
-apply plugin: 'java'
+dependencies {
+    implementation(platform('org.junit:junit-bom:5.9.2'))
+    testImplementation(platform('org.junit:junit-bom:5.9.2'))
+	implementation('org.junit.jupiter:junit-jupiter')
+	testImplementation('org.junit.jupiter:junit-jupiter')
+}
 
+test {
+    filter {
+        include "**/*Test.class"
+    }
+    beforeTest { descriptor ->
+        logger.lifecycle("Running test: ${descriptor}")
+    }
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    useJUnitPlatform {}
+}
+    
 compileJava {
   sourceCompatibility = JavaVersion.VERSION_17
   targetCompatibility = JavaVersion.VERSION_17
