@@ -35,19 +35,13 @@ public class CzechStemmer {
    *     <p><b>NOTE</b>: Input is expected to be in lowercase, but with diacritical marks
    */
   public int stem(char[] s, int len) {
-		// special case for "liga"
-		if (len == 4 && endsWith(s, len, "lize")) {
-			s[len - 2] = 'g';
-			return len - 1;
-		}
-		 
     len = removeCase(s, len);
     len = removePossessives(s, len);
     if (len > 0) {
       len = normalize(s, len);
     }
     return len;
-		
+
   }
 
   private int removeCase(char[] s, int len) {
@@ -97,6 +91,13 @@ public class CzechStemmer {
             || endsWith(s, len, "ým")
             || endsWith(s, len, "mi")
             || endsWith(s, len, "ou"))) return len - 2;
+
+		// special case for "liga"
+		if (len == 4
+				&& endsWith(s, len, "lize")) {
+			s[len - 2] = 'g';
+			return len - 1;
+		}
 
     if (len > 3) {
       switch (s[len - 1]) {

@@ -42,12 +42,6 @@ public class CzechStemmerASCIIFold {
    * but with diacritical marks</p>
    */
   public int stem(char s[], int len) {
-    // special case for "liga"
-    if (len == 4 && endsWith(s, len, "lize")) {
-      s[len - 2] = 'g';
-      return len - 1;
-    }
-      
     len = removeCase(s, len);
     len = removePossessives(s, len);
     if (len > 0) {
@@ -108,6 +102,12 @@ public class CzechStemmerASCIIFold {
         endsWith(s, len, "mi") ||
         endsWith(s, len, "ou")))
       return len - 2;
+
+    // special case for "liga"
+    if (len == 4 && endsWith(s, len, "lize")) {
+      s[len - 2] = 'g';
+      return len - 1;
+    }
 
     if (len > 3) {
       switch (s[len - 1]) {
