@@ -18,7 +18,6 @@ package cz.monitora.elasticsearch.analyzer.czech;
 
 import java.io.IOException;
 
-import org.apache.lucene.analysis.cz.CzechStemmer;
 import org.apache.lucene.analysis.miscellaneous.SetKeywordMarkerFilter; // for javadoc
 import org.apache.lucene.analysis.TokenFilter;
 import org.apache.lucene.analysis.TokenStream;
