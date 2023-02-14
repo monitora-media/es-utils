@@ -11,7 +11,7 @@ public class CzechStemmerASCIIFoldTest {
     @ParameterizedTest
     @CsvSource({
             "starenka, starenk",
-             "ruzove, ruh",
+            "ruzove, ruh",
 
             // from our synonyms
             "liga, lig",
