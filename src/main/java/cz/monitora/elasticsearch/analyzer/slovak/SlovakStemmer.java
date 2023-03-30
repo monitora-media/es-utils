@@ -98,6 +98,23 @@ public class SlovakStemmer {
 
 	@SuppressWarnings({ "NPathComplexity", "CyclomaticComplexity" })
 	private int removeCase(char[] s, int len) {
+		if (len >= 9) {
+			if (endsWith(s, len, "osti") || endsWith(s, len, "ostí")) {
+				s[len - 2] = 'ť';
+				return len - 1;
+			}
+			if (endsWith(s, len, "osťou")) {
+				return len - 2;
+			}
+			if (endsWith(s, len, "osťami")) {
+				return len - 3;
+			}
+			if (endsWith(s, len, "ostiach")) {
+				s[len - 5] = 'ť';
+				return len - 4;
+			}
+		}
+
 		if (len > 7 && endsWith(s, len, "atoch")) {
 			return len - 5;
 		}

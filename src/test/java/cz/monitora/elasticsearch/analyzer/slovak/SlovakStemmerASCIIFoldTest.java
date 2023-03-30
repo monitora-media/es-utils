@@ -50,6 +50,14 @@ public class SlovakStemmerASCIIFoldTest {
 			"lomnica, lomnic",
 			"lomnice, lomnic",
 			"lomniciam, lomnic",
+
+			// st stuff
+			"spolocnost, spolocnost",
+			"spolocnosti, spolocnost",
+			"spolocnostou, spolocnost",
+			"spolocnostami, spolocnost",
+			"spolocnosti, spolocnost",
+			"spolocnostiach, spolocnost",				
 	})
 	public void test_stem(String val, String exp) {
 		final SlovakStemmerASCIIFold stemmer = new SlovakStemmerASCIIFold();

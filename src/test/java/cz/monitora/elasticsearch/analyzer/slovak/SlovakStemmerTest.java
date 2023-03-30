@@ -50,6 +50,14 @@ public class SlovakStemmerTest {
 			"lomnica, lomnic",
 			"lomnice, lomnic",
 			"lomniciam, lomnic",
+
+			// sť stuff
+			"spoločnosť, spoločnosť",
+			"spoločnosti, spoločnosť",
+			"spoločnosťou, spoločnosť",
+			"spoločnosťami, spoločnosť",
+			"spoločností, spoločnosť",
+			"spoločnostiach, spoločnosť",
 	})
 	public void test_stem(String val, String exp) {
 		final SlovakStemmer stemmer = new SlovakStemmer();

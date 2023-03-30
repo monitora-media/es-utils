@@ -98,6 +98,21 @@ public class SlovakStemmerASCIIFold {
 
 	@SuppressWarnings({ "NPathComplexity", "CyclomaticComplexity" })
 	private int removeCase(char[] s, int len) {
+		if (len >= 9) {
+			if (endsWith(s, len, "osti")) {
+				return len - 1;
+			}
+			if (endsWith(s, len, "ostou")) {
+				return len - 2;
+			}
+			if (endsWith(s, len, "ostami")) {
+				return len - 3;
+			}
+			if (endsWith(s, len, "ostiach")) {
+				return len - 4;
+			}
+		}
+
 		if (len > 7 && endsWith(s, len, "atoch")) {
 			return len - 5;
 		}
