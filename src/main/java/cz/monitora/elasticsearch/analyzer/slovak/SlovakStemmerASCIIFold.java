@@ -70,157 +70,159 @@ import static org.apache.lucene.analysis.util.StemmerUtil.endsWith;
 import static org.apache.lucene.analysis.util.StemmerUtil.startsWith;
 
 public class SlovakStemmerASCIIFold {
-    /*
-     * Stem an input buffer of Slovak text.
-     *
-     * @param s input buffer
-     * @param len length of input buffer
-     * @return length of input buffer after normalization
-     *
-     * <p><b>NOTE</b>: Input is expected to be in lowercase,
-     * but with diacritical marks</p>
-     */
-    public int stem(char[] s, int len) {
-        len = removeCase(s, len);
-        len = removePossessives(s, len);
-        // len = removePrefixes(s, len);
-        return len;
-    }
+	/*
+	 * Stem an input buffer of Slovak text.
+	 *
+	 * @param s input buffer
+	 * 
+	 * @param len length of input buffer
+	 * 
+	 * @return length of input buffer after normalization
+	 *
+	 * <p><b>NOTE</b>: Input is expected to be in lowercase,
+	 * but with diacritical marks</p>
+	 */
+	public int stem(char[] s, int len) {
+		len = removeCase(s, len);
+		len = removePossessives(s, len);
+		// len = removePrefixes(s, len);
+		return len;
+	}
 
-    private int removePrefixes(char[] s, int len) {
-        if (len > 5 && startsWith(s, len, "naj")) {
-            return deleteN(s, 0, len, 3);
-        }
-        return len;
-    }
+	private int removePrefixes(char[] s, int len) {
+		if (len > 5 && startsWith(s, len, "naj")) {
+			return deleteN(s, 0, len, 3);
+		}
+		return len;
+	}
 
-    @SuppressWarnings({"NPathComplexity", "CyclomaticComplexity"})
-    private int removeCase(char[] s, int len) {
-        if (len > 7 && endsWith(s, len, "atoch")) {
-            return len - 5;
-        }
+	@SuppressWarnings({ "NPathComplexity", "CyclomaticComplexity" })
+	private int removeCase(char[] s, int len) {
+		if (len > 7 && endsWith(s, len, "atoch")) {
+			return len - 5;
+		}
 
-        if (len > 6 && endsWith(s, len, "atom")) {
-            return palatalize(s, len - 3);
-        }
+		if (len > 6 && endsWith(s, len, "atom")) {
+			return palatalize(s, len - 3);
+		}
 
-        if (len > 5) {
-            if (endsWith(s, len, "och") ||
-                endsWith(s, len, "ich") ||
-                endsWith(s, len, "ich") ||
-                endsWith(s, len, "eho") ||
-                endsWith(s, len, "ami") ||
-                endsWith(s, len, "emi") ||
-                endsWith(s, len, "emu") ||
-                endsWith(s, len, "ete") ||
-                endsWith(s, len, "eti") ||
-                endsWith(s, len, "iho") ||
-                endsWith(s, len, "iho") ||
-                endsWith(s, len, "imi") ||
-                endsWith(s, len, "imu") ||
-                endsWith(s, len, "ata")) {
-                return palatalize(s, len - 2);
-            }
-            if (endsWith(s, len, "ach") ||
-                endsWith(s, len, "ata") ||
-                endsWith(s, len, "aty") ||
-                endsWith(s, len, "ych") ||
-                endsWith(s, len, "ami") ||
-                endsWith(s, len, "ove") ||
-                endsWith(s, len, "ovi") ||
-                endsWith(s, len, "ymi")) {
-                return len - 3;
-            }
-            if (endsWith(s, len, "ice")) {
-                return len - 1;
-            }
-            if (endsWith(s, len, "ciam")) {
-                return len - 3;
-            }
-        }
+		if (len > 5) {
+			if (endsWith(s, len, "och") ||
+					endsWith(s, len, "ich") ||
+					endsWith(s, len, "ich") ||
+					endsWith(s, len, "eho") ||
+					endsWith(s, len, "ami") ||
+					endsWith(s, len, "emi") ||
+					endsWith(s, len, "emu") ||
+					endsWith(s, len, "ete") ||
+					endsWith(s, len, "eti") ||
+					endsWith(s, len, "iho") ||
+					endsWith(s, len, "iho") ||
+					endsWith(s, len, "imi") ||
+					endsWith(s, len, "imu") ||
+					endsWith(s, len, "ata")) {
+				return palatalize(s, len - 2);
+			}
+			if (endsWith(s, len, "ach") ||
+					endsWith(s, len, "ata") ||
+					endsWith(s, len, "aty") ||
+					endsWith(s, len, "ych") ||
+					endsWith(s, len, "ami") ||
+					endsWith(s, len, "ove") ||
+					endsWith(s, len, "ovi") ||
+					endsWith(s, len, "ymi")) {
+				return len - 3;
+			}
+			if (endsWith(s, len, "ice")) {
+				return len - 1;
+			}
+			if (endsWith(s, len, "ciam")) {
+				return len - 3;
+			}
+		}
 
-        if (len > 4) {
-            if (endsWith(s, len, "om")) {
-                return palatalize(s, len - 1);
-            }
-            if (endsWith(s, len, "es") ||
-                endsWith(s, len, "em") ||
-                endsWith(s, len, "im")) {
-                return palatalize(s, len - 2);
-            }
-            if (endsWith(s, len, "um") ||
-                endsWith(s, len, "at") ||
-                endsWith(s, len, "am") ||
-                endsWith(s, len, "os") ||
-                endsWith(s, len, "us") ||
-                endsWith(s, len, "ym") ||
-                endsWith(s, len, "mi") ||
-                endsWith(s, len, "ou") ||
-                endsWith(s, len, "ej")) {
-                return len - 2;
-            }
-        }
+		if (len > 4) {
+			if (endsWith(s, len, "om")) {
+				return palatalize(s, len - 1);
+			}
+			if (endsWith(s, len, "es") ||
+					endsWith(s, len, "em") ||
+					endsWith(s, len, "im")) {
+				return palatalize(s, len - 2);
+			}
+			if (endsWith(s, len, "um") ||
+					endsWith(s, len, "at") ||
+					endsWith(s, len, "am") ||
+					endsWith(s, len, "os") ||
+					endsWith(s, len, "us") ||
+					endsWith(s, len, "ym") ||
+					endsWith(s, len, "mi") ||
+					endsWith(s, len, "ou") ||
+					endsWith(s, len, "ej")) {
+				return len - 2;
+			}
+		}
 
-        if (len > 3) {
-            switch (s[len - 1]) {
-                case 'e':
-                case 'i':
-                // case 'i':
-                    return palatalize(s, len);
-                case 'u':
-                case 'y':
-                case 'a':
-                case 'o':
-                // case 'a':
-                // case 'e':
-                // case 'y':
-                    return len - 1;
-                default:
-            }
-        }
+		if (len > 3) {
+			switch (s[len - 1]) {
+				case 'e':
+				case 'i':
+					// case 'i':
+					return palatalize(s, len);
+				case 'u':
+				case 'y':
+				case 'a':
+				case 'o':
+					// case 'a':
+					// case 'e':
+					// case 'y':
+					return len - 1;
+				default:
+			}
+		}
 
-        return len;
-    }
+		return len;
+	}
 
-    private int removePossessives(char[] s, int len) {
-        if (len > 5) {
-            if (endsWith(s, len, "ov")) {
-                return len - 2;
-            }
-            if (endsWith(s, len, "in")) {
-                return palatalize(s, len - 1);
-            }
-        }
+	private int removePossessives(char[] s, int len) {
+		if (len > 5) {
+			if (endsWith(s, len, "ov")) {
+				return len - 2;
+			}
+			if (endsWith(s, len, "in")) {
+				return palatalize(s, len - 1);
+			}
+		}
 
-        return len;
-    }
+		return len;
+	}
 
-    @SuppressWarnings({"CyclomaticComplexity"})
-    private int palatalize(char[] s, int len) {
-        assert len > 3;
+	@SuppressWarnings({ "CyclomaticComplexity" })
+	private int palatalize(char[] s, int len) {
+		assert len > 3;
 
-        if (endsWith(s, len, "ci") ||
-            endsWith(s, len, "ce") ||
-            endsWith(s, len, "ci") ||
-            endsWith(s, len, "ce")) { // [cc][ie] -> k
-            s[len - 2] = 'k';
-        } else if (endsWith(s, len, "zi") ||
-            endsWith(s, len, "ze") ||
-            endsWith(s, len, "zi") ||
-            endsWith(s, len, "ze")) { // [zz][ie] -> h
-            s[len - 2] = 'h';
-        } else if (endsWith(s, len, "cte") ||
-            endsWith(s, len, "cti") ||
-            endsWith(s, len, "cti")) { // ct[eii] -> ck
-            s[len - 3] = 'c';
-            s[len - 2] = 'k';
-        } else if (endsWith(s, len, "ste") ||
-            endsWith(s, len, "sti") ||
-            endsWith(s, len, "sti")) { // st[eii] -> sk
-            s[len - 3] = 's';
-            s[len - 2] = 'k';
-        }
+		if (endsWith(s, len, "ci") ||
+				endsWith(s, len, "ce") ||
+				endsWith(s, len, "ci") ||
+				endsWith(s, len, "ce")) { // [cc][ie] -> k
+			s[len - 2] = 'k';
+		} else if (endsWith(s, len, "zi") ||
+				endsWith(s, len, "ze") ||
+				endsWith(s, len, "zi") ||
+				endsWith(s, len, "ze")) { // [zz][ie] -> h
+			s[len - 2] = 'h';
+		} else if (endsWith(s, len, "cte") ||
+				endsWith(s, len, "cti") ||
+				endsWith(s, len, "cti")) { // ct[eii] -> ck
+			s[len - 3] = 'c';
+			s[len - 2] = 'k';
+		} else if (endsWith(s, len, "ste") ||
+				endsWith(s, len, "sti") ||
+				endsWith(s, len, "sti")) { // st[eii] -> sk
+			s[len - 3] = 's';
+			s[len - 2] = 'k';
+		}
 
-        return len - 1;
-    }
+		return len - 1;
+	}
 }
