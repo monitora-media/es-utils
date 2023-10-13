@@ -12,8 +12,12 @@ in the [release](https://github.com/monitora-media/es-utils/releases/latest).
 
 ## Build
 
-    ES_VERSION=8.5.3
+    ES_VERSION=8.9.2
     ./gradlew build -Pelasticsearch.version=$ES_VERSION
+
+## Testing
+
+    gradle test --debug
 
 ## Install
 
