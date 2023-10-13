@@ -16,6 +16,18 @@ public class CzechStemmerTest {
             // from our synonyms
             "liga, lig",
             "lize, lig",
+
+            // iva
+            "iva, iva",
+            "ivy, iva",
+            "ivě, iva",
+            "ivou, iva",
+
+            "invektiva, invektiv",
+            "invektivy, invektiv",
+            "invektivě, invektiv",
+            "invektivou, invektiv",
+
     })
     public void test_stem(String val, String exp) {
         final CzechStemmer stemmer = new CzechStemmer();

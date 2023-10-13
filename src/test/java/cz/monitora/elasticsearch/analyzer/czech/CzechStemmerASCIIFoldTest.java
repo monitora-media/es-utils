@@ -16,6 +16,18 @@ public class CzechStemmerASCIIFoldTest {
             // from our synonyms
             "liga, lig",
             "lize, lig",
+
+            // iva
+            "iva, iva",
+            "ivy, iva",
+            "ive, iva",
+            "ivou, iva",
+
+            "invektiva, invektiv",
+            "invektivy, invektiv",
+            "invektive, invektiv",
+            "invektivou, invektiv",
+
     })
     public void test_stem(String val, String exp) {
         final CzechStemmerASCIIFold stemmer = new CzechStemmerASCIIFold();

@@ -103,14 +103,30 @@ public class CzechStemmerASCIIFold {
         endsWith(s, len, "ou")))
       return len - 2;
 
-		/*
-				special case for "liga" local (6th case - "lize")
-				which we want to be stemmed as "lig" as the rest of the cases
-				if we move this further, we might have been demaging more words
-				so we just do it here
-		*/
+    /*
+        special case for "liga" local (6th case - "lize")
+        which we want to be stemmed as "lig" as the rest of the cases
+        if we move this further, we might have been demaging more words
+        so we just do it here
+    */
     if (len == 4 && endsWith(s, len, "lize")) {
       s[len - 2] = 'g';
+      return len - 1;
+    }
+
+
+    /*
+        special case for "iva" declination
+    */
+    if (len == 3 &&
+        (endsWith(s, len, "ivy") ||
+         endsWith(s, len, "ive"))) {
+      s[2] = 'a';
+      return len;
+    }
+
+    if (len == 4 && endsWith(s, len, "ivou")) {
+      s[2] = 'a';
       return len - 1;
     }
 
