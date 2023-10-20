@@ -34,7 +34,7 @@ test {
     }
     useJUnitPlatform {}
 }
-    
+
 compileJava {
   sourceCompatibility = JavaVersion.VERSION_17
   targetCompatibility = JavaVersion.VERSION_17
@@ -51,4 +51,3 @@ esplugin {
   classname 'cz.monitora.elasticsearch.MonitoraESPlugin'
   licenseFile rootProject.file('LICENSE')
 }
-

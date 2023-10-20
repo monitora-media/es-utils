@@ -16,18 +16,13 @@
  */
 package cz.monitora.elasticsearch.analyzer.czech;
 
-
 import static org.apache.lucene.analysis.util.StemmerUtil.*;
 
 /**
  * Light Stemmer for Czech.
- * <p>
- * Implements the algorithm described in:
- * <i>
- * Indexing and stemming approaches for the Czech language
- * </i>
- * http://portal.acm.org/citation.cfm?id=1598600
- * </p>
+ *
+ * <p>Implements the algorithm described in: <i> Indexing and stemming approaches for the Czech
+ * language </i> http://portal.acm.org/citation.cfm?id=1598600
  */
 public class CzechStemmerASCIIFold {
 
@@ -37,9 +32,7 @@ public class CzechStemmerASCIIFold {
    * @param s input buffer
    * @param len length of input buffer
    * @return length of input buffer after normalization
-   *
-   * <p><b>NOTE</b>: Input is expected to be in lowercase,
-   * but with diacritical marks</p>
+   *     <p><b>NOTE</b>: Input is expected to be in lowercase, but with diacritical marks
    */
   public int stem(char s[], int len) {
     len = removeCase(s, len);
@@ -51,57 +44,52 @@ public class CzechStemmerASCIIFold {
   }
 
   private int removeCase(char s[], int len) {
-    if (len > 7 && endsWith(s, len, "atech"))
-      return len - 5;
+    if (len > 7 && endsWith(s, len, "atech")) return len - 5;
 
-    if (len > 6 &&
-        (endsWith(s, len,"etem") ||
-        endsWith(s, len,"etem") ||
-        endsWith(s, len,"atum")))
+    if (len > 6
+        && (endsWith(s, len, "etem") || endsWith(s, len, "etem") || endsWith(s, len, "atum")))
       return len - 4;
 
-    if (len > 5 &&
-        (endsWith(s, len, "ech") ||
-        endsWith(s, len, "ich") ||
-        endsWith(s, len, "ich") ||
-        endsWith(s, len, "eho") ||
-        endsWith(s, len, "emi") ||
-        endsWith(s, len, "emi") ||
-        endsWith(s, len, "emu") ||
-        endsWith(s, len, "ete") ||
-        endsWith(s, len, "ete") ||
-        endsWith(s, len, "eti") ||
-        endsWith(s, len, "eti") ||
-        endsWith(s, len, "iho") ||
-        endsWith(s, len, "iho") ||
-        endsWith(s, len, "imi") ||
-        endsWith(s, len, "imu") ||
-        endsWith(s, len, "imu") ||
-        endsWith(s, len, "ach") ||
-        endsWith(s, len, "ata") ||
-        endsWith(s, len, "aty") ||
-        endsWith(s, len, "ych") ||
-        endsWith(s, len, "ama") ||
-        endsWith(s, len, "ami") ||
-        endsWith(s, len, "ove") ||
-        endsWith(s, len, "ovi") ||
-        endsWith(s, len, "ymi")))
-      return len - 3;
+    if (len > 5
+        && (endsWith(s, len, "ech")
+            || endsWith(s, len, "ich")
+            || endsWith(s, len, "ich")
+            || endsWith(s, len, "eho")
+            || endsWith(s, len, "emi")
+            || endsWith(s, len, "emi")
+            || endsWith(s, len, "emu")
+            || endsWith(s, len, "ete")
+            || endsWith(s, len, "ete")
+            || endsWith(s, len, "eti")
+            || endsWith(s, len, "eti")
+            || endsWith(s, len, "iho")
+            || endsWith(s, len, "iho")
+            || endsWith(s, len, "imi")
+            || endsWith(s, len, "imu")
+            || endsWith(s, len, "imu")
+            || endsWith(s, len, "ach")
+            || endsWith(s, len, "ata")
+            || endsWith(s, len, "aty")
+            || endsWith(s, len, "ych")
+            || endsWith(s, len, "ama")
+            || endsWith(s, len, "ami")
+            || endsWith(s, len, "ove")
+            || endsWith(s, len, "ovi")
+            || endsWith(s, len, "ymi"))) return len - 3;
 
-    if (len > 4 &&
-        (endsWith(s, len, "em") ||
-        endsWith(s, len, "es") ||
-        endsWith(s, len, "em") ||
-        endsWith(s, len, "im") ||
-        endsWith(s, len, "um") ||
-        endsWith(s, len, "at") ||
-        endsWith(s, len, "am") ||
-        endsWith(s, len, "os") ||
-        endsWith(s, len, "us") ||
-        endsWith(s, len, "ym") ||
-        endsWith(s, len, "mi") ||
-        endsWith(s, len, "ou")))
-      return len - 2;
+    if (len > 4
+        && (endsWith(s, len, "em")
+            || endsWith(s, len, "es")
+            || endsWith(s, len, "em")
+            || endsWith(s, len, "im")
+            || endsWith(s, len, "um")
+            || endsWith(s, len, "at")
+            || endsWith(s, len, "am")
+            || endsWith(s, len, "os")
+            || endsWith(s, len, "us")
+            || endsWith(s, len, "ym")
+            || endsWith(s, len, "mi")
+            || endsWith(s, len, "ou"))) return len - 2;
 
     /*
         special case for "liga" local (6th case - "lize")
@@ -114,13 +102,10 @@ public class CzechStemmerASCIIFold {
       return len - 1;
     }
 
-
     /*
         special case for "iva" declination
     */
-    if (len == 3 &&
-        (endsWith(s, len, "ivy") ||
-         endsWith(s, len, "ive"))) {
+    if (len == 3 && (endsWith(s, len, "ivy") || endsWith(s, len, "ive"))) {
       s[2] = 'a';
       return len;
     }
@@ -137,13 +122,13 @@ public class CzechStemmerASCIIFold {
         case 'i':
         case 'o':
         case 'u':
-        //case 'u':
+          // case 'u':
         case 'y':
-        //case 'a':
-        //case 'e':
-        //case 'i':
-        //case 'y':
-        //case 'e':
+          // case 'a':
+          // case 'e':
+          // case 'i':
+          // case 'y':
+          // case 'e':
           return len - 1;
       }
     }
@@ -152,10 +137,7 @@ public class CzechStemmerASCIIFold {
   }
 
   private int removePossessives(char s[], int len) {
-    if (len > 5 &&
-        (endsWith(s, len, "ov") ||
-        endsWith(s, len, "in") ||
-        endsWith(s, len, "uv")))
+    if (len > 5 && (endsWith(s, len, "ov") || endsWith(s, len, "in") || endsWith(s, len, "uv")))
       return len - 2;
 
     return len;
@@ -174,13 +156,13 @@ public class CzechStemmerASCIIFold {
       return len;
     }
 
-    switch(s[len - 1]) {
+    switch (s[len - 1]) {
       case 'c': // [cc] -> k
-      //case 'c':
+        // case 'c':
         s[len - 1] = 'k';
         return len;
       case 'z': // [zz] -> h
-      //case 'z':
+        // case 'z':
         s[len - 1] = 'h';
         return len;
     }

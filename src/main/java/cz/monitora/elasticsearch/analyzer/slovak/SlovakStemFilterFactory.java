@@ -7,15 +7,16 @@ import org.elasticsearch.index.IndexSettings;
 import org.elasticsearch.index.analysis.AbstractTokenFilterFactory;
 
 public class SlovakStemFilterFactory extends AbstractTokenFilterFactory {
-	private final boolean withASCIIFold;
+  private final boolean withASCIIFold;
 
-	public SlovakStemFilterFactory(IndexSettings indexSettings, Environment env, String name, Settings settings) {
-		super(name, settings);
-		withASCIIFold = settings.getAsBoolean("with_asciifold", false);
-	}
+  public SlovakStemFilterFactory(
+      IndexSettings indexSettings, Environment env, String name, Settings settings) {
+    super(name, settings);
+    withASCIIFold = settings.getAsBoolean("with_asciifold", false);
+  }
 
-	@Override
-	public TokenStream create(TokenStream input) {
-		return new SlovakStemFilter(input, withASCIIFold);
-	}
+  @Override
+  public TokenStream create(TokenStream input) {
+    return new SlovakStemFilter(input, withASCIIFold);
+  }
 }

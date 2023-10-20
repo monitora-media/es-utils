@@ -41,7 +41,6 @@ public class CzechStemmer {
       len = normalize(s, len);
     }
     return len;
-
   }
 
   private int removeCase(char[] s, int len) {
@@ -98,8 +97,7 @@ public class CzechStemmer {
         if we move this further, we might have been demaging more words
         so we just do it here
     */
-    if (len == 4
-        && endsWith(s, len, "lize")) {
+    if (len == 4 && endsWith(s, len, "lize")) {
       s[len - 2] = 'g';
       return len - 1;
     }
@@ -107,9 +105,7 @@ public class CzechStemmer {
     /*
         special case for "iva" declination
     */
-    if (len == 3 &&
-        (endsWith(s, len, "ivy") ||
-         endsWith(s, len, "ivě"))) {
+    if (len == 3 && (endsWith(s, len, "ivy") || endsWith(s, len, "ivě"))) {
       s[2] = 'a';
       return len;
     }

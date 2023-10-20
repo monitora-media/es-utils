@@ -1,63 +1,61 @@
 package cz.monitora.elasticsearch.analyzer.slovak;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.Arrays;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class SlovakStemmerTest {
 
   // grep 'ze$' /usr/share/hunspell/sk_SK.dic | head
   @ParameterizedTest
   @CsvSource({
-      "vlastenci, vlastenk",
-      "kurence, kurenk",
-      "popiči, popik",
-      "náruče, náruk",
+    "vlastenci, vlastenk",
+    "kurence, kurenk",
+    "popiči, popik",
+    "náruče, náruk",
+    "medzi, medh",
+    "holomraze, holomrah",
+    "slíži, slíh",
+    "odkiaľže, odkiaľh",
+    "zmočte, zmock",
+    "nezvedečti, nezvedeck",
+    "nevimdalčtí, nevimdalck",
+    "kušte, kusk",
+    "počešti, počesk",
+    "klieští, kliesk",
 
-      "medzi, medh",
-      "holomraze, holomrah",
-      "slíži, slíh",
-      "odkiaľže, odkiaľh",
+    // from our synonyms
+    "nemocnica, nemocnic",
+    "nemocnice, nemocnic",
+    "nemocniciam, nemocnic",
+    "bystrica, bystric",
+    "bystrice, bystric",
+    "bystriciam, bystric",
+    "štiavnica, štiavnic",
+    "štiavnice, štiavnic",
+    "štiavniciam, štiavnic",
+    "radnica, radnic",
+    "radnice, radnic",
+    "radniciam, radnic",
+    "stanica, stanic",
+    "stanice, stanic",
+    "staniciam, stanic",
+    "knižnica, knižnic",
+    "knižnice, knižnic",
+    "knižniciam, knižnic",
+    "lomnica, lomnic",
+    "lomnice, lomnic",
+    "lomniciam, lomnic",
 
-      "zmočte, zmock",
-      "nezvedečti, nezvedeck",
-      "nevimdalčtí, nevimdalck",
-
-      "kušte, kusk",
-      "počešti, počesk",
-      "klieští, kliesk",
-
-      // from our synonyms
-      "nemocnica, nemocnic",
-      "nemocnice, nemocnic",
-      "nemocniciam, nemocnic",
-      "bystrica, bystric",
-      "bystrice, bystric",
-      "bystriciam, bystric",
-      "štiavnica, štiavnic",
-      "štiavnice, štiavnic",
-      "štiavniciam, štiavnic",
-      "radnica, radnic",
-      "radnice, radnic",
-      "radniciam, radnic",
-      "stanica, stanic",
-      "stanice, stanic",
-      "staniciam, stanic",
-      "knižnica, knižnic",
-      "knižnice, knižnic",
-      "knižniciam, knižnic",
-      "lomnica, lomnic",
-      "lomnice, lomnic",
-      "lomniciam, lomnic",
-
-      // sť stuff
-      "spoločnosť, spoločnosť",
-      "spoločnosti, spoločnosť",
-      "spoločnosťou, spoločnosť",
-      "spoločnosťami, spoločnosť",
-      "spoločností, spoločnosť",
-      "spoločnostiach, spoločnosť",
+    // sť stuff
+    "spoločnosť, spoločnosť",
+    "spoločnosti, spoločnosť",
+    "spoločnosťou, spoločnosť",
+    "spoločnosťami, spoločnosť",
+    "spoločností, spoločnosť",
+    "spoločnostiach, spoločnosť",
   })
   public void test_stem(String val, String exp) {
     final SlovakStemmer stemmer = new SlovakStemmer();
