@@ -92,12 +92,12 @@ public class CzechStemmerASCIIFold {
             || endsWith(s, len, "ou"))) return len - 2;
 
     /*
-        special case for "liga" local (6th case - "lize")
+        special case for "liga" and "extraliga" local (6th case - "lize")
         which we want to be stemmed as "lig" as the rest of the cases
         if we move this further, we might have been demaging more words
         so we just do it here
     */
-    if (len == 4 && endsWith(s, len, "lize")) {
+    if ((len == 4 || len == 9) && endsWith(s, len, "lize")) {
       s[len - 2] = 'g';
       return len - 1;
     }

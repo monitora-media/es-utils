@@ -17,6 +17,8 @@ public class CzechStemmerASCIIFoldTest {
     // from our synonyms
     "liga, lig",
     "lize, lig",
+    "extraliga, extralig",
+    "extralize, extralig",
 
     // iva
     "iva, iva",
