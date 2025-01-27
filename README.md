@@ -12,12 +12,17 @@ in the [release](https://github.com/monitora-media/es-utils/releases/latest).
 
 ## Build
 
-    ES_VERSION=8.9.2
+    ES_VERSION=8.15.2
     ./gradlew build -Pelasticsearch.version=$ES_VERSION
+
+    export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+    export PATH=$JAVA_HOME/bin:$PATH
+    JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 PATH=$JAVA_HOME/bin:$PATH ./gradlew build -Pelasticsearch.version=8.15.2
+
 
 ## Testing
 
-    gradle test --debug
+    gradle test --debug --tests "Croatian*"
 
 ## Install
 
