@@ -28,7 +28,7 @@ public class CroatianStemmerTest {
     */
 
     return Stream.of(
-        Arguments.of("zlatka", "zlatk"),
+        Arguments.of("zlatko", "zlatk"),
         Arguments.of("zlatka", "zlatk"),
         Arguments.of("zlatku", "zlatk"),
         Arguments.of("zlatkom", "zlatk"),
