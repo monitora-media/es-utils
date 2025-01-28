@@ -72,12 +72,12 @@ public class CroatianStemmer {
   protected void initRules() {
     // stuff which would be fucked using patterns
     exactMatches = new HashMap<>();
-    exactMatches.put("zao", "zlo");
-    exactMatches.put("zla", "zlo");
-    exactMatches.put("zlo", "zlo");
-    exactMatches.put("dobar", "dobr");
-    exactMatches.put("dobro", "dobr");
-    exactMatches.put("dobra", "dobr");
+    exactMatches.put("zao", "zli");
+    exactMatches.put("zla", "zli");
+    exactMatches.put("zlo", "zli");
+    exactMatches.put("dobar", "dobro");
+    exactMatches.put("dobro", "dobro");
+    exactMatches.put("dobra", "dobro");
 
     wordStart = new ArrayList<>();
     wordEnd = new ArrayList<>();

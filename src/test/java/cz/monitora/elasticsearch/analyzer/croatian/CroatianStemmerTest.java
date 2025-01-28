@@ -50,11 +50,11 @@ public class CroatianStemmerTest {
         Arguments.of("dobroslava", "dobroslav"),
         Arguments.of("dobroslavu", "dobroslav"),
         Arguments.of("dobroslavom", "dobroslav"),
-        Arguments.of("dobar", "dobr"),
-        Arguments.of("dobro", "dobr"),
-        Arguments.of("dobra", "dobr"),
-        Arguments.of("zao", "zlo"),
-        Arguments.of("zla", "zlo"),
-        Arguments.of("zlo", "zlo"));
+        Arguments.of("dobar", "dobro"),
+        Arguments.of("dobro", "dobro"),
+        Arguments.of("dobra", "dobro"),
+        Arguments.of("zao", "zli"),
+        Arguments.of("zla", "zli"),
+        Arguments.of("zlo", "zli"));
   }
 }
