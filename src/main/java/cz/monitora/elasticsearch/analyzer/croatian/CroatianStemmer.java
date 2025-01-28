@@ -1,6 +1,7 @@
 package cz.monitora.elasticsearch.analyzer.croatian;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.regex.Matcher;
@@ -14,6 +15,7 @@ import java.util.regex.Pattern;
 public class CroatianStemmer {
 
   private HashMap<String, String> transformations;
+  private HashMap<String, String> exactMatches;
   private HashSet<String> stopset;
   private ArrayList<String> wordStart;
   private ArrayList<String> wordEnd;
@@ -26,8 +28,17 @@ public class CroatianStemmer {
 
   public int stem(char[] s, int len) {
     String word = new String(s, 0, len);
+
     if (stopset.contains(word)) {
       return len;
+    }
+
+    if (exactMatches.containsKey(word)) {
+      String replacement = exactMatches.get(word);
+      Arrays.fill(s, '\0');
+      char[] replacementChars = replacement.toCharArray();
+      System.arraycopy(replacementChars, 0, s, 0, replacementChars.length);
+      return replacementChars.length;
     }
 
     String stemmed = transform(word);
@@ -58,143 +69,16 @@ public class CroatianStemmer {
     return word.replaceAll("(^|[^aeiou])r($|[^aeiou])", "$1R$2");
   }
 
-  private String convertCyrillicToLatinString(String word) {
-    StringBuffer sb = new StringBuffer();
-    for (int i = 0; i < word.length(); i++) {
-      char ch = word.charAt(i);
-      sb.append(convertCyrillicToLatinCharacter(ch));
-    }
-    return sb.toString();
-  }
-
-  private String convertCyrillicToLatinCharacter(char character) {
-    switch (character) {
-      case 'а':
-        return "a";
-      case 'А':
-        return "A";
-      case 'б':
-        return "b";
-      case 'Б':
-        return "B";
-      case 'в':
-        return "v";
-      case 'В':
-        return "V";
-      case 'г':
-        return "g";
-      case 'Г':
-        return "G";
-      case 'д':
-        return "d";
-      case 'Д':
-        return "D";
-      case 'ђ':
-        return "đ";
-      case 'Ђ':
-        return "Đ";
-      case 'е':
-        return "e";
-      case 'Е':
-        return "E";
-      case 'ж':
-        return "ž";
-      case 'Ж':
-        return "Ž";
-      case 'з':
-        return "z";
-      case 'З':
-        return "Z";
-      case 'и':
-        return "i";
-      case 'И':
-        return "I";
-      case 'ј':
-        return "j";
-      case 'Ј':
-        return "J";
-      case 'к':
-        return "k";
-      case 'К':
-        return "K";
-      case 'л':
-        return "l";
-      case 'Л':
-        return "L";
-      case 'љ':
-        return "lj";
-      case 'Љ':
-        return "Lj";
-      case 'м':
-        return "m";
-      case 'М':
-        return "M";
-      case 'н':
-        return "n";
-      case 'Н':
-        return "N";
-      case 'њ':
-        return "nj";
-      case 'Њ':
-        return "Nj";
-      case 'о':
-        return "o";
-      case 'О':
-        return "O";
-      case 'п':
-        return "p";
-      case 'П':
-        return "P";
-      case 'р':
-        return "r";
-      case 'Р':
-        return "R";
-      case 'с':
-        return "s";
-      case 'С':
-        return "S";
-      case 'т':
-        return "t";
-      case 'Т':
-        return "T";
-      case 'ћ':
-        return "ć";
-      case 'Ћ':
-        return "Ć";
-      case 'у':
-        return "u";
-      case 'У':
-        return "U";
-      case 'ф':
-        return "f";
-      case 'Ф':
-        return "F";
-      case 'х':
-        return "h";
-      case 'Х':
-        return "H";
-      case 'ц':
-        return "c";
-      case 'Ц':
-        return "C";
-      case 'ч':
-        return "č";
-      case 'Ч':
-        return "Č";
-      case 'џ':
-        return "dž";
-      case 'Џ':
-        return "Dž";
-      case 'ш':
-        return "š";
-      case 'Ш':
-        return "Š";
-      default:
-        return Character.toString(character);
-    }
-  }
-
   protected void initRules() {
+    // stuff which would be fucked using patterns
+    exactMatches = new HashMap<>();
+    exactMatches.put("zao", "zlo");
+    exactMatches.put("zla", "zlo");
+    exactMatches.put("zlo", "zlo");
+    exactMatches.put("dobar", "dobr");
+    exactMatches.put("dobro", "dobr");
+    exactMatches.put("dobra", "dobr");
+
     wordStart = new ArrayList<>();
     wordEnd = new ArrayList<>();
     wordPatterns = new ArrayList<>();

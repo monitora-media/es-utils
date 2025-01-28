@@ -46,6 +46,15 @@ public class CroatianStemmerTest {
         Arguments.of("zoranom", "zoran"),
         Arguments.of("milanoviću", "milanović"),
         Arguments.of("milanovićem", "milanović"),
-        Arguments.of("milanovića", "milanović"));
+        Arguments.of("milanovića", "milanović"),
+        Arguments.of("dobroslava", "dobroslav"),
+        Arguments.of("dobroslavu", "dobroslav"),
+        Arguments.of("dobroslavom", "dobroslav"),
+        Arguments.of("dobar", "dobr"),
+        Arguments.of("dobro", "dobr"),
+        Arguments.of("dobra", "dobr"),
+        Arguments.of("zao", "zlo"),
+        Arguments.of("zla", "zlo"),
+        Arguments.of("zlo", "zlo"));
   }
 }

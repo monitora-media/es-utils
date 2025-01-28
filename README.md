@@ -22,7 +22,7 @@ in the [release](https://github.com/monitora-media/es-utils/releases/latest).
 
 ## Testing
 
-    gradle test --debug --tests "Croatian*"
+    gradle test --info --tests "Croatian*"
 
 ## Install
 
