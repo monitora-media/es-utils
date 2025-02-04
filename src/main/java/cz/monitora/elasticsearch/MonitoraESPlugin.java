@@ -1,5 +1,6 @@
 package cz.monitora.elasticsearch;
 
+import cz.monitora.elasticsearch.analyzer.croatian.CroatianStemFilterFactory;
 import cz.monitora.elasticsearch.analyzer.czech.CzechStemFilterFactory;
 import cz.monitora.elasticsearch.analyzer.lowercase.LowerCaseTokenFilterFactory;
 import cz.monitora.elasticsearch.analyzer.slovak.SlovakStemFilterFactory;
@@ -20,6 +21,7 @@ public class MonitoraESPlugin extends Plugin implements AnalysisPlugin {
         AnalysisPlugin.requiresAnalysisSettings(LowerCaseTokenFilterFactory::new));
     extra.put("monitora_czech_stem", CzechStemFilterFactory::new);
     extra.put("monitora_slovak_stem", SlovakStemFilterFactory::new);
+    extra.put("monitora_croatian_stem", CroatianStemFilterFactory::new);
     return extra;
   }
 }
