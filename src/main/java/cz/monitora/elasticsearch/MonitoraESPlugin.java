@@ -4,6 +4,7 @@ import cz.monitora.elasticsearch.analyzer.croatian.CroatianStemFilterFactory;
 import cz.monitora.elasticsearch.analyzer.czech.CzechStemFilterFactory;
 import cz.monitora.elasticsearch.analyzer.lowercase.LowerCaseTokenFilterFactory;
 import cz.monitora.elasticsearch.analyzer.slovak.SlovakStemFilterFactory;
+import cz.monitora.elasticsearch.analyzer.slovenian.SlovenianStemFilterFactory;
 import java.util.HashMap;
 import java.util.Map;
 import org.elasticsearch.index.analysis.TokenFilterFactory;
@@ -22,6 +23,7 @@ public class MonitoraESPlugin extends Plugin implements AnalysisPlugin {
     extra.put("monitora_czech_stem", CzechStemFilterFactory::new);
     extra.put("monitora_slovak_stem", SlovakStemFilterFactory::new);
     extra.put("monitora_croatian_stem", CroatianStemFilterFactory::new);
+    extra.put("monitora_slovenian_stem", SlovenianStemFilterFactory::new);
     return extra;
   }
 }
