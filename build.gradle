@@ -33,7 +33,28 @@ test {
         events "passed", "skipped", "failed"
         showStandardStreams = true
     }
-    useJUnitPlatform {}
+    useJUnitPlatform {
+        excludeTags 'performance'
+    }
+}
+
+// Separate task for running performance tests
+task performanceTest(type: Test) {
+    description = 'Runs performance analysis tests for stemmers'
+    group = 'verification'
+
+    filter {
+        include "**/*PerformanceTest.class"
+    }
+
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+
+    useJUnitPlatform {
+        includeTags 'performance'
+    }
 }
 
 compileJava {

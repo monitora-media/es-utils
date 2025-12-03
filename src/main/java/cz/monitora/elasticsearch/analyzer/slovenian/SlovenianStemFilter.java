@@ -39,7 +39,7 @@ public final class SlovenianStemFilter extends TokenFilter {
   private final CharTermAttribute termAttr = addAttribute(CharTermAttribute.class);
   private final KeywordAttribute keywordAttr = addAttribute(KeywordAttribute.class);
 
-  public SlovenianStemFilter(TokenStream input, boolean withASCIIFold) {
+  public SlovenianStemFilter(TokenStream input) {
     super(input);
   }
 

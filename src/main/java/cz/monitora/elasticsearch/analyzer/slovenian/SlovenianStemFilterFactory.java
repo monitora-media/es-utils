@@ -23,16 +23,14 @@ import org.elasticsearch.index.IndexSettings;
 import org.elasticsearch.index.analysis.AbstractTokenFilterFactory;
 
 public class SlovenianStemFilterFactory extends AbstractTokenFilterFactory {
-  private final boolean withASCIIFold;
 
   public SlovenianStemFilterFactory(
       IndexSettings indexSettings, Environment env, String name, Settings settings) {
     super(name, settings);
-    withASCIIFold = settings.getAsBoolean("with_asciifold", false);
   }
 
   @Override
   public TokenStream create(TokenStream input) {
-    return new SlovenianStemFilter(input, withASCIIFold);
+    return new SlovenianStemFilter(input);
   }
 }
