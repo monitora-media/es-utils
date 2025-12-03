@@ -18,7 +18,12 @@ import org.junit.jupiter.api.Test;
  * This test evaluates the stemmer's precision across comprehensive datasets
  * and provides detailed failure reports.
  *
+ * Evaluation metric: All inflected forms within a group should stem to the same string.
+ * The stemmed result does not have to match the base form (Map key), it just needs to be
+ * consistent across all forms in the Set. Success = all forms produce identical stem.
+ *
  * Run manually (not part of regular test suite) to analyze stemmer quality.
+ * Use: ./gradlew performanceTest
  */
 public class SlovenianStemmerPerformanceTest {
     static class DatasetResult {

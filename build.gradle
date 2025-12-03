@@ -18,8 +18,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform('org.junit:junit-bom:5.9.2'))
+    testImplementation(platform('org.junit:junit-bom:5.11.4'))
 	testImplementation('org.junit.jupiter:junit-jupiter')
+	testRuntimeOnly('org.junit.platform:junit-platform-launcher')
 }
 
 test {
@@ -42,6 +43,9 @@ test {
 task performanceTest(type: Test) {
     description = 'Runs performance analysis tests for stemmers'
     group = 'verification'
+
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
 
     filter {
         include "**/*PerformanceTest.class"
@@ -68,8 +72,8 @@ group = "cz.monitora.elasticsearch"
 version = "${property("plugin.version")}-${property("elasticsearch.version")}"
 
 esplugin {
-  name 'monitora_utils'
-  description 'Utils for Elasticsearch'
-  classname 'cz.monitora.elasticsearch.MonitoraESPlugin'
-  licenseFile rootProject.file('LICENSE')
+  name = 'monitora_utils'
+  description = 'Utils for Elasticsearch'
+  classname = 'cz.monitora.elasticsearch.MonitoraESPlugin'
+  licenseFile = rootProject.file('LICENSE')
 }
