@@ -19,38 +19,35 @@ package cz.monitora.elasticsearch.analyzer.slovenian;
 import java.io.IOException;
 import org.apache.lucene.analysis.TokenFilter;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.miscellaneous.SetKeywordMarkerFilter; // for javadoc
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.KeywordAttribute;
 
 /**
  * A {@link TokenFilter} that applies {@link SlovenianStemmer} to stem Slovenian words.
  *
- * <p>To prevent terms from being stemmed use an instance of {@link
- * org.apache.lucene.analysis.miscellaneous.SetKeywordMarkerFilter} or a custom {@link TokenFilter}
- * that sets the {@link KeywordAttribute} before this {@link TokenStream}.
+ * <p>To prevent terms from being stemmed use an instance of {@link SetKeywordMarkerFilter} or a
+ * custom {@link TokenFilter} that sets the {@link KeywordAttribute} before this {@link
+ * TokenStream}.
  *
  * <p><b>NOTE</b>: Input is expected to be in lowercase, but with diacritical marks
+ *
+ * @see SetKeywordMarkerFilter
  */
 public final class SlovenianStemFilter extends TokenFilter {
   private final SlovenianStemmer stemmer = new SlovenianStemmer();
-  private final SlovenianStemmerASCIIFold stemmerASCIIFold = new SlovenianStemmerASCIIFold();
   private final CharTermAttribute termAttr = addAttribute(CharTermAttribute.class);
   private final KeywordAttribute keywordAttr = addAttribute(KeywordAttribute.class);
-  private final boolean withASCIIFold;
 
   public SlovenianStemFilter(TokenStream input, boolean withASCIIFold) {
     super(input);
-    this.withASCIIFold = withASCIIFold;
   }
 
   @Override
   public boolean incrementToken() throws IOException {
     if (input.incrementToken()) {
       if (!keywordAttr.isKeyword()) {
-        final int newlen =
-            (withASCIIFold
-                ? stemmerASCIIFold.stem(termAttr.buffer(), termAttr.length())
-                : stemmer.stem(termAttr.buffer(), termAttr.length()));
+        final int newlen = stemmer.stem(termAttr.buffer(), termAttr.length());
         termAttr.setLength(newlen);
       }
       return true;
