@@ -12,13 +12,13 @@ jobs:
                 es_version: [8.15.2]
         steps:
             - name: Checkout project sources
-              uses: actions/checkout@v4
-            - uses: actions/setup-java@v4
+              uses: actions/checkout@v2
+            - uses: actions/setup-java@v3
               with:
                   distribution: temurin
-                  java-version: 21
+                  java-version: 17
             - name: Setup Gradle
-              uses: gradle/actions/setup-gradle@v4
+              uses: gradle/gradle-build-action@v2
 
             - name: Run release build with Gradle Wrapper
               run: ./gradlew build -Pplugin.version=${{ github.ref_name }} -Pelasticsearch.version=${{ matrix.es_version }}
