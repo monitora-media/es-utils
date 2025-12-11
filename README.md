@@ -15,14 +15,20 @@ in the [release](https://github.com/monitora-media/es-utils/releases/latest).
     ES_VERSION=8.15.2
     ./gradlew build -Pelasticsearch.version=$ES_VERSION
 
-    export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+    export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
     export PATH=$JAVA_HOME/bin:$PATH
-    JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 PATH=$JAVA_HOME/bin:$PATH ./gradlew build -Pelasticsearch.version=8.15.2
+    JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 PATH=$JAVA_HOME/bin:$PATH ./gradlew build -Pelasticsearch.version=$ES_VERSION
 
 
 ## Testing
 
-    gradle test --info --tests "Croatian*"
+Unit tests:
+
+    ./gradlew test --info --tests "Croatian*"
+
+Performance tests:
+
+    ./gradlew performanceTest
 
 ## Install
 
@@ -57,8 +63,7 @@ Specialized stemmers for Slavic languages
             "with_asciifold": "true"
         },
         "mslovenian_stem": {
-            "type": "monitora_slovenian_stem",
-            "with_asciifold": "true"
+            "type": "monitora_slovenian_stem"
         },
         "mcroatian_stem": {
             "type": "monitora_croatian_stem"
@@ -76,64 +81,3 @@ Specialized stemmers for Slavic languages
     }
 }
 ```
-
-
-Test all tests:
-
-./gradlew test
-
-Test only Slovenian stemmer:
-
-./gradlew test --tests "Slovenian*"
-
-Test with detailed output:
-
-./gradlew test --info --tests "Slovenian*"
-
-Test specific language stemmers:
-
-# Croatian tests
-./gradlew test --tests "Croatian*"
-
-# Slovak tests
-./gradlew test --tests "Slovak*"
-
-# Czech tests
-./gradlew test --tests "Czech*"
-
-Build Commands
-
-Full build (compiles + tests + creates plugin):
-
-./gradlew build
-
-Build with specific Elasticsearch version:
-
-ES_VERSION=8.15.2
-./gradlew build -Pelasticsearch.version=$ES_VERSION
-
-Build without running tests:
-
-./gradlew build -x test
-
-Clean and rebuild:
-
-./gradlew clean build
-
-After Building
-
-The built plugin will be located at:
-build/distributions/monitora_utils-<version>-<ES_VERSION>.zip
-
-Install the plugin:
-
-elasticsearch-plugin install file://$(pwd)/build/distributions/monitora_utils-*-SNAPSHOT-8.15.2.zip
-
-View Test Reports
-
-After running tests, view the HTML report:
-# Open in browser
-xdg-open build/reports/tests/test/index.html
-
-# Or just view the file location
-echo "file://$(pwd)/build/reports/tests/test/index.html"

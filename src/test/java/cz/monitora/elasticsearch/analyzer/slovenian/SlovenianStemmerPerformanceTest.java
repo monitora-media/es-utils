@@ -147,7 +147,7 @@ public class SlovenianStemmerPerformanceTest {
         Map.entry("vse", Set.of("vse")),
 
         // -- NAMES --
-        Map.entry("gregor", Set.of("gregorja", "gregorju", "gregorjem"))
+        Map.entry("gregor", Set.of("gregor","gregorja", "gregorju", "gregorjem"))
     );
 
     @Test

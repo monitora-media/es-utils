@@ -22,7 +22,7 @@ public final class SlovenianStemmer {
     "ih","im","om","am","em","ov","ev","in","mi","eh","ah"
   };
   private static final String[] suffixes3 = {
-    "ega","emu","ima","imi","ami","oma","ama","ove","ova","ovs","ina","ino","ini"
+    "ega","emu","ima","imi","ami","oma","ama","ove","ova","ovs","ina","ino","ini","ine"
   };
   private static final String[] suffix3_remove2 = {
     "rja", "rje", "rju", "rjo"
