@@ -15,14 +15,20 @@ in the [release](https://github.com/monitora-media/es-utils/releases/latest).
     ES_VERSION=8.15.2
     ./gradlew build -Pelasticsearch.version=$ES_VERSION
 
-    export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+    export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
     export PATH=$JAVA_HOME/bin:$PATH
-    JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 PATH=$JAVA_HOME/bin:$PATH ./gradlew build -Pelasticsearch.version=8.15.2
+    JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 PATH=$JAVA_HOME/bin:$PATH ./gradlew build -Pelasticsearch.version=$ES_VERSION
 
 
 ## Testing
 
-    gradle test --info --tests "Croatian*"
+Unit tests:
+
+    ./gradlew test --info --tests "Croatian*"
+
+Performance tests:
+
+    ./gradlew performanceTest
 
 ## Install
 
@@ -35,9 +41,9 @@ in the [release](https://github.com/monitora-media/es-utils/releases/latest).
 Analysis filter that converts to lowercase but keeps the originally-cased token in the stream as
 well.
 
-### Czech and Slovak stemmers
+### Czech, Slovak, Croatian and Slovenian stemmers
 
-Specialized stemmers
+Specialized stemmers for Slavic languages
 
 ### Example index settings
 
@@ -55,6 +61,12 @@ Specialized stemmers
         "mslovak_stem": {
             "type": "monitora_slovak_stem",
             "with_asciifold": "true"
+        },
+        "mslovenian_stem": {
+            "type": "monitora_slovenian_stem"
+        },
+        "mcroatian_stem": {
+            "type": "monitora_croatian_stem"
         }
     },
     "analyzer": {

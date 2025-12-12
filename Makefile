@@ -1,5 +1,5 @@
 ES_VERSION ?= 8.15.2
-JAVA_HOME ?= /usr/lib/jvm/java-17-openjdk-amd64
+JAVA_HOME ?= /usr/lib/jvm/java-21-openjdk-amd64
 
 .PHONY: all build
 
