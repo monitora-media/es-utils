@@ -69,7 +69,7 @@ compileJava {
 apply plugin: 'elasticsearch.esplugin'
 
 group = "cz.monitora.elasticsearch"
-version = "${property("plugin.version")}-${property("elasticsearch.version")}"
+version = "${property("elasticsearch.version")}-${property("plugin.version")}"
 
 esplugin {
   name = 'monitora_utils'

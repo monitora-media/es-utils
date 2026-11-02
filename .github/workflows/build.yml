@@ -7,9 +7,6 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                es_version: [8.19.23]
         steps:
             - name: Checkout project sources
               uses: actions/checkout@v4
@@ -20,8 +17,22 @@ jobs:
             - name: Setup Gradle
               uses: gradle/actions/setup-gradle@v4
 
-            - name: Run release build with Gradle Wrapper
-              run: ./gradlew build -Pplugin.version=${{ github.ref_name }} -Pelasticsearch.version=${{ matrix.es_version }}
+            # Release tags are <es_version>-<major>.<minor>, e.g. 8.19.23-1.0.
+            # Branch builds use the versions in gradle.properties.
+            - name: Resolve versions
+              id: versions
+              run: |
+                  if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+                      if [[ "$GITHUB_REF_NAME" =~ ^([0-9]+\.[0-9]+\.[0-9]+)-([0-9]+\.[0-9]+)$ ]]; then
+                          echo "args=-Pelasticsearch.version=${BASH_REMATCH[1]} -Pplugin.version=${BASH_REMATCH[2]}" >> "$GITHUB_OUTPUT"
+                      else
+                          echo "::error::Tag '$GITHUB_REF_NAME' must be <es_version>-<major>.<minor>, e.g. 8.19.23-1.0"
+                          exit 1
+                      fi
+                  fi
+
+            - name: Build with Gradle Wrapper
+              run: ./gradlew build ${{ steps.versions.outputs.args }}
 
             - name: Release
               uses: softprops/action-gh-release@v1
