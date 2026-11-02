@@ -1,4 +1,4 @@
-ES_VERSION ?= 8.15.2
+ES_VERSION ?= 8.19.23
 JAVA_HOME ?= /usr/lib/jvm/java-21-openjdk-amd64
 
 .PHONY: all build
