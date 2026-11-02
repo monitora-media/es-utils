@@ -33,6 +33,12 @@ Releases up to `1.2.1` use the old `<plugin_version>` tags. They stay available.
     export PATH=$JAVA_HOME/bin:$PATH
     JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 PATH=$JAVA_HOME/bin:$PATH ./gradlew build -Pelasticsearch.version=$ES_VERSION
 
+The zip is in `build/distributions/`. A local build uses the versions in `gradle.properties` and
+produces a `-SNAPSHOT` zip, e.g. `monitora_utils-8.19.23-1.0-SNAPSHOT.zip`. That marks it as a
+development build. Only CI builds from a release tag are releases. To reproduce a release build
+locally (here for tag `8.19.23-1.0`):
+
+    ./gradlew build -Pelasticsearch.version=8.19.23 -Pplugin.version=1.0
 
 ## Testing
 
