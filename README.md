@@ -4,15 +4,29 @@ Various utilities enhancing our Elasticsearch installation.
 
 ## Release
 
-To create a release, just tag the commit with version number. The built files are available
-in the [release](https://github.com/monitora-media/es-utils/releases/latest).
+Release tags are `<es_version>-<major>.<minor>`. CI takes the Elasticsearch version and the
+plugin version from the tag, builds against that Elasticsearch version and publishes
+`monitora_utils-<es_version>-<major>.<minor>.zip` in the [release](https://github.com/monitora-media/es-utils/releases).
+Tags in any other format fail the build.
 
-    git tag 1.1.0
-    git push --tags
+- New Elasticsearch version, same plugin code: tag the same commit with the new ES version.
+  If the build fails because the Elasticsearch API changed, fix the code first.
+- Plugin change: bump the minor (or major) version.
+
+```
+git tag 8.19.23-1.0
+git push origin 8.19.23-1.0
+```
+
+Install URL:
+
+    https://github.com/monitora-media/es-utils/releases/download/<es_version>-<major>.<minor>/monitora_utils-<es_version>-<major>.<minor>.zip
+
+Releases up to `1.2.1` use the old `<plugin_version>` tags. They stay available.
 
 ## Build
 
-    ES_VERSION=8.15.2
+    ES_VERSION=8.19.23
     ./gradlew build -Pelasticsearch.version=$ES_VERSION
 
     export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
